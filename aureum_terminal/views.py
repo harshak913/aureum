@@ -55,7 +55,7 @@ class ScrapeViewSet(viewsets.ReadOnlyModelViewSet):
 class StandardBalanceViewSet(viewsets.ReadOnlyModelViewSet):
     def get_queryset(self):
         if 'accession_number' in self.kwargs:
-                return StandardBalance.objects.filter(accession_number=self.kwargs['accession_number'])
+            return StandardBalance.objects.filter(accession_number=self.kwargs['accession_number'])
         return StandardBalance.objects.all()
         
     lookup_field = 'accession_number'
@@ -69,7 +69,7 @@ class StandardBalanceViewSet(viewsets.ReadOnlyModelViewSet):
 class StandardIncomeViewSet(viewsets.ReadOnlyModelViewSet):
     def get_queryset(self):
         if 'accession_number' in self.kwargs:
-                return StandardIncome.objects.filter(accession_number=self.kwargs['accession_number'])
+            return StandardIncome.objects.filter(accession_number=self.kwargs['accession_number'])
         return StandardIncome.objects.all()
         
     lookup_field = 'accession_number'
@@ -83,7 +83,7 @@ class StandardIncomeViewSet(viewsets.ReadOnlyModelViewSet):
 class StandardCashFlowViewSet(viewsets.ReadOnlyModelViewSet):
     def get_queryset(self):
         if 'accession_number' in self.kwargs:
-                return StandardCash.objects.filter(accession_number=self.kwargs['accession_number'])
+            return StandardCash.objects.filter(accession_number=self.kwargs['accession_number'])
         return StandardCash.objects.all()
         
     lookup_field = 'accession_number'
@@ -97,7 +97,7 @@ class StandardCashFlowViewSet(viewsets.ReadOnlyModelViewSet):
 class BalanceViewSet(viewsets.ReadOnlyModelViewSet):
     def get_queryset(self):
         if 'accession_number' in self.kwargs:
-                return Balance.objects.filter(accession_number=self.kwargs['accession_number'])
+            return Balance.objects.filter(accession_number=self.kwargs['accession_number'])
         return Balance.objects.all()
         
     lookup_field = 'accession_number'
@@ -111,7 +111,7 @@ class BalanceViewSet(viewsets.ReadOnlyModelViewSet):
 class IncomeViewSet(viewsets.ReadOnlyModelViewSet):
     def get_queryset(self):
         if 'accession_number' in self.kwargs:
-                return Income.objects.filter(accession_number=self.kwargs['accession_number'])
+            return Income.objects.filter(accession_number=self.kwargs['accession_number'])
         return Income.objects.all()
         
     lookup_field = 'accession_number'
@@ -125,7 +125,7 @@ class IncomeViewSet(viewsets.ReadOnlyModelViewSet):
 class CashFlowViewSet(viewsets.ReadOnlyModelViewSet):
     def get_queryset(self):
         if 'accession_number' in self.kwargs:
-                return CashFlow.objects.filter(accession_number=self.kwargs['accession_number'])
+            return CashFlow.objects.filter(accession_number=self.kwargs['accession_number'])
         return CashFlow.objects.all()
         
     lookup_field = 'accession_number'

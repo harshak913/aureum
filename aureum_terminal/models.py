@@ -75,6 +75,10 @@ class Income(models.Model):
     member_order = models.IntegerField(blank=True, null=True)
     header_order = models.IntegerField(blank=True, null=True)
 
+    class Meta:
+        managed = False
+        db_table = 'income'
+
 
 class CashFlow(models.Model):
     accession_number = models.ForeignKey(Scrape, on_delete=models.CASCADE, db_column='accession_number')
@@ -107,10 +111,6 @@ class Dictionary(models.Model):
     class Meta:
         managed = False
         db_table = 'dictionary'
-
-    class Meta:
-        managed = False
-        db_table = 'income'
 
 
 class MasterIdx(models.Model):
