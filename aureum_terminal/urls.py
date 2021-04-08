@@ -3,7 +3,8 @@ from . import views
 from rest_framework import routers
 from rest_framework.urlpatterns import format_suffix_patterns
 
-router = routers.DefaultRouter()
+# router = routers.SimpleRouter() --> use this before deployment since you want to hide API routes from user
+router = routers.DefaultRouter() # disable this before deployment; ONLY use for testing since this displays all API routes
 router.register(r'companies', views.CompanyViewSet, 'companies')
 router.register(r'filings', views.ScrapeViewSet, 'filings')
 router.register(r'stdbal', views.StandardBalanceViewSet, 'stdbal')

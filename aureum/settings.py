@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -73,6 +74,12 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'aureum.wsgi.application'
+
+""" REST_FRAMEWORK = {
+    'DEFAULT_RENDERER_CLASSES': (
+        'rest_framework.renderers.JSONRenderer',
+    )
+} """ # use this before deployment since you want to hide API routes from user
 
 
 # Database
