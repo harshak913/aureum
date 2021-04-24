@@ -121,6 +121,17 @@ class MasterIdx(models.Model):
         managed = False
         db_table = 'master_idx'
 
+class News(models.Model):
+    cik = models.ForeignKey(Company, on_delete=models.CASCADE)
+    title = models.CharField(max_length=500, blank=True, null=True)
+    link = models.CharField(max_length=10000, blank=True, null=True)
+    date_published = models.CharField(max_length=20, blank=True, null=True)
+    source = models.CharField(max_length=100, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'news'
+
 
 class NonStatement(models.Model):
     accession_number = models.ForeignKey('Scrape', on_delete=models.CASCADE, db_column='accession_number')

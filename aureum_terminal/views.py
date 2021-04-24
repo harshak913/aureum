@@ -1,6 +1,6 @@
-from .models import Company, Scrape, StandardBalance, StandardCash, StandardIncome, Balance, Income, CashFlow
+from .models import Company, Scrape, StandardBalance, StandardCash, StandardIncome, Balance, Income, CashFlow, News
 from django.db.models import Q
-from .serializers import CompanySerializer, ScrapeSerializer, StandardBalanceSerializer, StandardIncomeSerializer, StandardCashFlowSerializer, BalanceSerializer, IncomeSerializer, CashFlowSerializer
+from .serializers import CompanySerializer, ScrapeSerializer, StandardBalanceSerializer, StandardIncomeSerializer, StandardCashFlowSerializer, BalanceSerializer, IncomeSerializer, CashFlowSerializer, NewsSerializer
 from rest_framework import viewsets
 from rest_framework.response import Response
 
@@ -130,6 +130,20 @@ class CashFlowViewSet(viewsets.ReadOnlyModelViewSet):
         
     lookup_field = 'accession_number'
     serializer_class = CashFlowSerializer
+
+    def retrieve(self, request, *args, **kwargs):
+        serializer = self.get_serializer(self.get_queryset(), many=True)
+        return Response(serializer.data)
+
+# Lets us access news serialized JSON data
+class NewsViewSet(viewsets.ReadOnlyModelViewSet):
+    def get_queryset(self):
+        if 'cik' in self.kwargs:
+            return News.objects.filter(cik=self.kwargs['cik'])
+        return News.objects.all()
+        
+    lookup_field = 'accession_number'
+    serializer_class = NewsSerializer
 
     def retrieve(self, request, *args, **kwargs):
         serializer = self.get_serializer(self.get_queryset(), many=True)
