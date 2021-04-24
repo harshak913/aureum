@@ -125,7 +125,7 @@ class News(models.Model):
     cik = models.ForeignKey(Company, on_delete=models.CASCADE)
     title = models.CharField(max_length=500, blank=True, null=True)
     link = models.CharField(max_length=10000, blank=True, null=True)
-    date_published = models.CharField(max_length=20, blank=True, null=True)
+    date_published = models.CharField(max_length=50, blank=True, null=True)
     source = models.CharField(max_length=100, blank=True, null=True)
 
     class Meta:
