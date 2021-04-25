@@ -142,7 +142,7 @@ class NewsViewSet(viewsets.ReadOnlyModelViewSet):
             return News.objects.filter(cik=self.kwargs['cik'])
         return News.objects.all()
         
-    lookup_field = 'accession_number'
+    lookup_field = 'cik'
     serializer_class = NewsSerializer
 
     def retrieve(self, request, *args, **kwargs):
