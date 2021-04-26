@@ -44,7 +44,7 @@ class CashFlowSerializer(serializers.ModelSerializer):
 class NewsSerializer(serializers.ModelSerializer):
     class Meta:
         model = News
-        fields = ['cik', 'title', 'link', 'date_published', 'source']
+        fields = ['cik', 'title', 'link', 'date_published', 'source', 'id']
 
 # Non-Statement Serializer
 """ class NonStatementSerializer(serializers.ModelSerializer):
