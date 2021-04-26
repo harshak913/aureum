@@ -22,7 +22,7 @@ class Company(models.Model):
 
 
 class Scrape(models.Model):
-    cik = models.ForeignKey(Company, on_delete=models.CASCADE)
+    cik = models.ForeignKey(Company, on_delete=models.CASCADE, db_column='cik_id')
     filing_type = models.CharField(max_length=45, blank=True, null=True)
     year = models.IntegerField(blank=True, null=True)
     file_name = models.CharField(max_length=445, blank=True, null=True)
@@ -122,7 +122,7 @@ class MasterIdx(models.Model):
         db_table = 'master_idx'
 
 class News(models.Model):
-    cik = models.ForeignKey(Company, on_delete=models.CASCADE)
+    cik = models.ForeignKey(Company, on_delete=models.CASCADE, db_column='cik')
     title = models.CharField(max_length=500, blank=True, null=True)
     link = models.CharField(max_length=10000, blank=True, null=True)
     date_published = models.CharField(max_length=50, blank=True, null=True)
