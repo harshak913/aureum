@@ -51,6 +51,22 @@ class ScrapeViewSet(viewsets.ReadOnlyModelViewSet):
         serializer = self.get_serializer(self.get_queryset(), many=True)
         return Response(serializer.data)
 
+# Lets us access scrape serialized JSON data for each company
+class CompanyClassificationViewSet(viewsets.ReadOnlyModelViewSet):
+
+    def get_queryset(self):
+
+        if 'classification' in self.kwargs:
+            return Company.objects.filter(classification=self.kwargs['classification'])
+        return Company.objects.all()
+
+    lookup_field = 'classification'
+    serializer_class = CompanySerializer
+
+    def retrieve(self, request, *args, **kwargs): # Change is here <<
+        serializer = self.get_serializer(self.get_queryset(), many=True)
+        return Response(serializer.data)
+
 # Lets us access standard balance serialized JSON data
 class StandardBalanceViewSet(viewsets.ReadOnlyModelViewSet):
     def get_queryset(self):

@@ -141,7 +141,6 @@ STATIC_URL = '/static/'
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
-    "https://terminal-react.herokuapp.com/",
 ]
 
 # Configure Django App for Heroku.
