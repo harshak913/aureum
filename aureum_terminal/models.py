@@ -15,6 +15,10 @@ class Company(models.Model):
     classification = models.IntegerField(blank=True, null=True)
     classification_name = models.CharField(max_length=250, blank=True, null=True)
     description = models.CharField(max_length=10000, blank=True, null=True)
+    hq = models.CharField(max_length=250, blank=True, null=True)
+    website = models.CharField(max_length=250, blank=True, null=True)
+    logo_url = models.CharField(max_length=250, blank=True, null=True)
+    full_time_employees = models.IntegerField(blank=True, null=True)
 
     class Meta:
         managed = False
