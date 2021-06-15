@@ -1,5 +1,6 @@
+from django.db.models import fields
 from rest_framework import serializers
-from .models import Company, News, Scrape, StandardBalance, StandardIncome, StandardCash, Balance, Income, CashFlow, NonStatement
+from .models import Company, News, Scrape, StandardBalance, StandardIncome, StandardCash, Balance, Income, CashFlow, NonStatement, StockData
 
 class CompanySerializer(serializers.ModelSerializer):
     class Meta:
@@ -45,6 +46,11 @@ class NewsSerializer(serializers.ModelSerializer):
     class Meta:
         model = News
         fields = ['cik', 'title', 'link', 'date_published', 'source', 'id']
+
+class StockSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = StockData
+        fields = ['cik', 'date', 'open', 'high', 'low', 'close', 'adj_close', 'volume', 'period', 'interval', 'id']
 
 # Non-Statement Serializer
 """ class NonStatementSerializer(serializers.ModelSerializer):

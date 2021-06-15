@@ -39,6 +39,22 @@ class Scrape(models.Model):
         managed = False
         db_table = 'scrape'
 
+class StockData(models.Model):
+    cik = models.ForeignKey(Company, models.DO_NOTHING, db_column='cik', blank=True, null=True)
+    date = models.DateTimeField(blank=True, null=True)
+    open = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
+    high = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
+    low = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
+    close = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
+    adj_close = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
+    volume = models.BigIntegerField(blank=True, null=True)
+    period = models.CharField(max_length=3, blank=True, null=True)
+    interval = models.CharField(max_length=3, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'stock_data'
+
 
 class Balance(models.Model):
     accession_number = models.ForeignKey(Scrape, on_delete=models.CASCADE, db_column='accession_number')

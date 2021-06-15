@@ -1,6 +1,6 @@
-from .models import Company, Scrape, StandardBalance, StandardCash, StandardIncome, Balance, Income, CashFlow, News
+from .models import Company, Scrape, StandardBalance, StandardCash, StandardIncome, Balance, Income, CashFlow, News, StockData
 from django.db.models import Q
-from .serializers import CompanySerializer, ScrapeSerializer, StandardBalanceSerializer, StandardIncomeSerializer, StandardCashFlowSerializer, BalanceSerializer, IncomeSerializer, CashFlowSerializer, NewsSerializer
+from .serializers import CompanySerializer, ScrapeSerializer, StandardBalanceSerializer, StandardIncomeSerializer, StandardCashFlowSerializer, BalanceSerializer, IncomeSerializer, CashFlowSerializer, NewsSerializer, StockSerializer
 from rest_framework import viewsets
 from rest_framework.response import Response
 
@@ -160,6 +160,22 @@ class NewsViewSet(viewsets.ReadOnlyModelViewSet):
         
     lookup_field = 'cik'
     serializer_class = NewsSerializer
+
+    def retrieve(self, request, *args, **kwargs):
+        serializer = self.get_serializer(self.get_queryset(), many=True)
+        return Response(serializer.data)
+
+class StockViewSet(viewsets.ReadOnlyModelViewSet):
+    def get_queryset(self):
+        period = self.request.query_params.get('period', None)
+
+        if 'cik' in self.kwargs:
+            if period is not None:
+                return StockData.objects.filter(Q(cik=self.kwargs['cik']) & Q(period=period))
+            return StockData.objects.filter(cik=self.kwargs['cik'])
+
+    lookup_field = 'cik'
+    serializer_class = StockSerializer
 
     def retrieve(self, request, *args, **kwargs):
         serializer = self.get_serializer(self.get_queryset(), many=True)

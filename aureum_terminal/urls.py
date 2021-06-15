@@ -15,6 +15,7 @@ router.register(r'bal', views.BalanceViewSet, 'bal')
 router.register(r'inc', views.IncomeViewSet, 'inc')
 router.register(r'cash', views.CashFlowViewSet, 'cash')
 router.register(r'news', views.NewsViewSet, 'news')
+router.register(r'stock', views.StockViewSet, 'stock')
 
 urlpatterns = [
     path('', include(router.urls)),
