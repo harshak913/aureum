@@ -19,6 +19,14 @@ class Company(models.Model):
     website = models.CharField(max_length=250, blank=True, null=True)
     logo_url = models.CharField(max_length=250, blank=True, null=True)
     full_time_employees = models.IntegerField(blank=True, null=True)
+    open = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
+    prev_close = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
+    avg_volume_10_days = models.BigIntegerField(blank=True, null=True)
+    day_high = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
+    day_low = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
+    year_high = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
+    year_low = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
+    market_cap = models.CharField(max_length=20, blank=True, null=True)
 
     class Meta:
         managed = False

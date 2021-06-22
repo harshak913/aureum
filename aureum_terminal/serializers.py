@@ -5,7 +5,7 @@ from .models import Company, News, Scrape, StandardBalance, StandardIncome, Stan
 class CompanySerializer(serializers.ModelSerializer):
     class Meta:
         model = Company
-        fields = ['cik', 'ticker', 'name', 'classification', 'classification_name', 'description', 'hq', 'website', 'full_time_employees', 'logo_url']
+        fields = ['cik', 'ticker', 'name', 'classification', 'classification_name', 'description', 'hq', 'website', 'full_time_employees', 'logo_url', 'open', 'prev_close', 'avg_volume_10_days', 'day_high', 'day_low', 'year_high', 'year_low', 'market_cap']
 
 class ScrapeSerializer(serializers.ModelSerializer):
     class Meta:
