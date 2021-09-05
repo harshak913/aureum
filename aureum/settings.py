@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
+import django_heroku
 import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -88,10 +89,10 @@ WSGI_APPLICATION = 'aureum.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'd7p3fuehaleleo',
-        'USER': 'snbetggfklcniv',
-        'PASSWORD': '7798f45239eda70f8278ce3c05dc632ad57b97957b601681a3c516f37153403a',
-        'HOST': 'ec2-34-197-188-147.compute-1.amazonaws.com',
+        'NAME': 'd6opmk21f25j4b',
+        'USER': 'ud391q90ad34ve',
+        'PASSWORD': 'p8341abe622aff82b9a68f53630dc38106b85904049b394bcf957561040a4f83d',
+        'HOST': 'ec2-54-158-107-41.compute-1.amazonaws.com',
         'PORT': '5432'
     }
 }
@@ -144,5 +145,4 @@ CORS_ALLOWED_ORIGINS = [
 ]
 
 # Configure Django App for Heroku.
-import django_heroku
 django_heroku.settings(locals())
