@@ -1,6 +1,6 @@
 from .models import Company, Scrape, StandardBalance, StandardCash, StandardIncome, Balance, Income, CashFlow, News, StockData
 from django.db.models import Q
-from .serializers import CompanySerializer, ScrapeSerializer, StandardBalanceSerializer, StandardIncomeSerializer, StandardCashFlowSerializer, BalanceSerializer, IncomeSerializer, CashFlowSerializer, NewsSerializer, StockSerializer
+from .serializers import CompanySerializer, HedgeSerializer, ScrapeSerializer, StandardBalanceSerializer, StandardIncomeSerializer, StandardCashFlowSerializer, BalanceSerializer, IncomeSerializer, CashFlowSerializer, NewsSerializer, StockSerializer
 from rest_framework import viewsets
 from rest_framework.response import Response
 
@@ -165,6 +165,7 @@ class NewsViewSet(viewsets.ReadOnlyModelViewSet):
         serializer = self.get_serializer(self.get_queryset(), many=True)
         return Response(serializer.data)
 
+# Lets us access stock serialized JSON data
 class StockViewSet(viewsets.ReadOnlyModelViewSet):
     def get_queryset(self):
         period = self.request.query_params.get('period', None)
@@ -176,6 +177,20 @@ class StockViewSet(viewsets.ReadOnlyModelViewSet):
 
     lookup_field = 'cik'
     serializer_class = StockSerializer
+
+    def retrieve(self, request, *args, **kwargs):
+        serializer = self.get_serializer(self.get_queryset(), many=True)
+        return Response(serializer.data)
+
+# Lets us access hedge serialized JSON data
+class HedgeViewSet(viewsets.ReadOnlyModelViewSet):
+    def get_queryset(self):
+
+        if 'cik' in self.kwargs:
+            return StockData.objects.filter(cik=self.kwargs['cik'])
+
+    lookup_field = 'cik'
+    serializer_class = HedgeSerializer
 
     def retrieve(self, request, *args, **kwargs):
         serializer = self.get_serializer(self.get_queryset(), many=True)

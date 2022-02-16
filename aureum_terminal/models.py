@@ -27,6 +27,7 @@ class Company(models.Model):
     year_high = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
     year_low = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
     market_cap = models.CharField(max_length=20, blank=True, null=True)
+    hedge_status = models.CharField(max_length=5, blank=True, null=True)
 
     class Meta:
         managed = False
@@ -140,6 +141,29 @@ class Dictionary(models.Model):
         managed = False
         db_table = 'dictionary'
 
+class HedgeData(models.Model):
+    cik = models.ForeignKey(Company, on_delete=models.CASCADE, db_column='cik')
+    fund_name = models.CharField(max_length=500, blank=True, null=True)
+    stock_name = models.CharField(max_length=500, blank=True, null=True)
+    class_field = models.CharField(db_column='class', max_length=50, blank=True, null=True)  # Field renamed because it was a Python reserved word.
+    cusip = models.CharField(max_length=20, blank=True, null=True)
+    amount_in_1000 = models.IntegerField(blank=True, null=True)
+    number_of_shares = models.IntegerField(blank=True, null=True)
+    put_call = models.CharField(max_length=250, blank=True, null=True)
+    filing_date = models.DateField(blank=True, null=True)
+    aum_in_1000 = models.IntegerField(blank=True, null=True)
+    fund_positions = models.IntegerField(blank=True, null=True)
+    shr_qoq_change_pct = models.DecimalField(max_digits=30, decimal_places=15, blank=True, null=True)
+    percentage_holding = models.DecimalField(max_digits=30, decimal_places=15, blank=True, null=True)
+    average_price_per_share = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True)
+    price_qoq_change_pct = models.DecimalField(max_digits=30, decimal_places=15, blank=True, null=True)
+    shr_qoq_change_val = models.DecimalField(max_digits=30, decimal_places=15, blank=True, null=True)
+    shr_qoq_change_capital = models.DecimalField(max_digits=30, decimal_places=15, blank=True, null=True)
+    total_quarterly_capital_change = models.DecimalField(max_digits=30, decimal_places=15, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'hedge_data'
 
 class MasterIdx(models.Model):
     master_file = models.CharField(max_length=25, blank=True, null=True)
