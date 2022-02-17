@@ -55,7 +55,7 @@ class StockSerializer(serializers.ModelSerializer):
 class HedgeSerializer(serializers.ModelSerializer):
     class Meta:
         model = HedgeData
-        fields = ['cik', 'fund_name', 'stock_name', 'class_field', 'cusip', 'amount_in_1000', 'number_of_shares', 'put_call', 'filing_date', 'aum_in_1000', 'fund_positions', 'shr_qoq_change_pct', 'percentage_holding', 'average_price_per_share', 'price_qoq_change_pct', 'shr_qoq_change_val', 'shr_qoq_change_capital', 'total_quarterly_capital_change']
+        fields = ['cik', 'fund_name', 'stock_name', 'class_field', 'cusip', 'amount_in_1000', 'number_of_shares', 'put_call', 'filing_date', 'aum_in_1000', 'fund_positions', 'shr_qoq_change_pct', 'percentage_holding', 'average_price_per_share', 'price_qoq_change_pct', 'shr_qoq_change_val', 'shr_qoq_change_capital', 'total_quarterly_capital_change', 'id']
 
 # Non-Statement Serializer
 """ class NonStatementSerializer(serializers.ModelSerializer):
