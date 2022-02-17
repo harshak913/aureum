@@ -1,4 +1,4 @@
-from .models import Company, Scrape, StandardBalance, StandardCash, StandardIncome, Balance, Income, CashFlow, News, StockData
+from .models import Company, HedgeData, Scrape, StandardBalance, StandardCash, StandardIncome, Balance, Income, CashFlow, News, StockData
 from django.db.models import Q
 from .serializers import CompanySerializer, HedgeSerializer, ScrapeSerializer, StandardBalanceSerializer, StandardIncomeSerializer, StandardCashFlowSerializer, BalanceSerializer, IncomeSerializer, CashFlowSerializer, NewsSerializer, StockSerializer
 from rest_framework import viewsets
@@ -187,7 +187,7 @@ class HedgeViewSet(viewsets.ReadOnlyModelViewSet):
     def get_queryset(self):
 
         if 'cik' in self.kwargs:
-            return StockData.objects.filter(cik=self.kwargs['cik'])
+            return HedgeData.objects.filter(cik=self.kwargs['cik'])
 
     lookup_field = 'cik'
     serializer_class = HedgeSerializer
